@@ -13,8 +13,8 @@
         android:layout_height="wrap_content"
         android:paddingTop="24dp"> <!-- Отступ сверху -->
 
-        <TextView
-            android:id="@+id/textSkip"
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/btnSkip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Пропустить"
@@ -25,6 +25,7 @@
             android:clickable="true"
             android:focusable="true"/>
     </FrameLayout>
+
 
     <!-- Центрированный контейнер с картинкой и текстами -->
     <LinearLayout

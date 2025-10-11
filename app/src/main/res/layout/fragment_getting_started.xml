@@ -11,22 +11,31 @@
         android:id="@+id/tvAppName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
         android:layout_marginBottom="8dp"
-        android:layout_marginTop="80dp"
-        android:text="Пользуйтесь с удовольствием"
+        android:layout_marginTop="100dp"
+        android:text="DriveNext"
         android:textColor="#2A1246"
         android:textSize="24sp"
         android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/tvSlogan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Поможем найти твою следующую поездку"
+        android:textSize="14sp"
+        android:textColor="#000000"
+        android:alpha="0.7"
+        android:gravity="center"/>
 
     <ImageView
         android:id="@+id/imgLogo"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="180dp"
-        android:src="@drawable/congratulations"
-        android:contentDescription="Позддравляем"
+        android:layout_marginTop="100dp"
+        android:src="@drawable/_9199058_1"
+        android:contentDescription="Логотип DriveNext"
         android:layout_marginBottom="24dp"/>
 
     <com.google.android.material.button.MaterialButton
@@ -34,11 +43,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:text="Далее"
+        android:text="Войти"
         android:textSize="16dp"
         android:textColor="@android:color/white"
         android:backgroundTint="#2A1246"
         app:cornerRadius="8dp"
-        android:layout_marginTop="120dp" />
+        android:layout_marginTop="20dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:text="Зарегистрироваться"
+        android:textColor="#344054"
+        android:textSize="16dp"
+        app:cornerRadius="8dp"
+        app:strokeColor="#D0D5DD"
+        app:strokeWidth="1dp" />
 
 </LinearLayout>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.example.drivenext_antonova.ui.SplashFragment"
+        android:label="Splash">
+        <action
+            android:id="@+id/action_splashFragment_to_onboardingFragment1"
+            app:destination="@id/onboardingFragment1" />
+        <action
+            android:id="@+id/action_splashFragment_to_gettingStartedFragment"
+            app:destination="@id/gettingStartedFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_homepageFragment"
+            app:destination="@id/homepageFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/noConnectionFragment"
+        android:name="com.example.drivenext_antonova.ui.NoConnectionFragment"
+        android:label="No connection">
+        <action
+            android:id="@+id/action_global_noConnectionFragment"
+            app:destination="@id/noConnectionFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/onboardingFragment1"
+        android:name="com.example.drivenext_antonova.ui.onboarding.OnboardingFragment1"
+        android:label="Onboarding 1">
+        <action
+            android:id="@+id/action_onboardingFragment1_to_onboardingFragment2"
+            app:destination="@id/onboardingFragment2" />
+        <action
+            android:id="@+id/action_onboardingFragment1_to_gettingStartedFragment"
+            app:destination="@id/gettingStartedFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/onboardingFragment2"
+        android:name="com.example.drivenext_antonova.ui.onboarding.OnboardingFragment2"
+        android:label="Onboarding 2">
+        <action
+            android:id="@+id/action_onboardingFragment2_to_onboardingFragment3"
+            app:destination="@id/onboardingFragment3" />
+        <action
+            android:id="@+id/action_onboardingFragment2_to_gettingStartedFragment"
+            app:destination="@id/gettingStartedFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/onboardingFragment3"
+        android:name="com.example.drivenext_antonova.ui.onboarding.OnboardingFragment3"
+        android:label="Onboarding 3">
+        <action
+            android:id="@+id/action_onboardingFragment3_to_gettingStartedFragment"
+            app:destination="@id/gettingStartedFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/gettingStartedFragment"
+        android:name="com.example.drivenext_antonova.ui.GettingStartedFragment"
+        android:label="Getting started">
+        <action
+            android:id="@+id/action_gettingStartedFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_gettingStartedFragment_to_signUpFragment1"
+            app:destination="@id/signUpFragment1" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.drivenext_antonova.ui.LoginFragment"
+        android:label="Log in">
+        <action
+            android:id="@+id/action_loginFragment_to_homepageFragment"
+            app:destination="@id/homepageFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_signUpFragment1"
+            app:destination="@id/signUpFragment1" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/signUpFragment1"
+        android:name="com.example.drivenext_antonova.ui.SignUpFragment1"
+        android:label="Sign up 1">
+        <action
+            android:id="@+id/action_signUpFragment1_to_signUpFragment2"
+            app:destination="@id/signUpFragment2" />
+        <action
+            android:id="@+id/action_signUpFragment1_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/signUpFragment2"
+        android:name="com.example.drivenext_antonova.ui.SignUpFragment2"
+        android:label="Sign up 2">
+        <action
+            android:id="@+id/action_signUpFragment2_to_signUpFragment3"
+            app:destination="@id/signUpFragment3" />
+        <action
+            android:id="@+id/action_signUpFragment2_to_signUpFragment1"
+            app:destination="@id/signUpFragment1" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/signUpFragment3"
+        android:name="com.example.drivenext_antonova.ui.SignUpFragment3"
+        android:label="Sign up 3">
+        <action
+            android:id="@+id/action_signUpFragment3_to_signUpSuccessFragment"
+            app:destination="@id/signUpSuccessFragment" />
+        <action
+            android:id="@+id/action_signUpFragment3_to_signUpFragment2"
+            app:destination="@id/signUpFragment2" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/signUpSuccessFragment"
+        android:name="com.example.drivenext_antonova.ui.SignUpSuccessFragment"
+        android:label="Sign up success">
+        <action
+            android:id="@+id/action_signUpSuccessFragment_to_homepageFragment"
+            app:destination="@id/homepageFragment" />
+        <action
+            android:id="@+id/action_signUpSuccessFragment_to_signUpFragment3"
+            app:destination="@id/signUpFragment3" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/homepageFragment"
+        android:name="com.example.drivenext_antonova.ui.HomepageFragment"
+        android:label="Homepage">
+        <action
+            android:id="@+id/action_homepageFragment_to_gettingStartedFragment"
+            app:destination="@id/gettingStartedFragment" />
+    </fragment>
+</navigation>

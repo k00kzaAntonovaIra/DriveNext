@@ -97,22 +97,21 @@
         android:id="@+id/btnGoogle"
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:layout_marginBottom="24dp"
+        android:background="@android:color/transparent"
+        android:backgroundTint="@null"
         android:text="Войти через Google"
+        android:textColor="#4A148C" />
+
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="Зарегистрироваться"
         android:textColor="#4A148C"
-        android:background="0"
+        android:background="@android:color/transparent"
         android:backgroundTint="@null"
         android:layout_marginBottom="24dp" />
-
-    <TextView
-        android:id="@+id/tvRegister"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Зарегистрироваться"
-        android:textColor="#6A1B9A"
-        android:textSize="14sp"
-        android:clickable="true"
-        android:focusable="true"
-        android:layout_gravity="center_horizontal"/>
 
     <!-- Пустое пространство снизу -->
     <View
