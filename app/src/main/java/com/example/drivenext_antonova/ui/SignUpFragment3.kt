@@ -1,11 +1,18 @@
 package com.example.drivenext_antonova.ui
 
 import android.app.DatePickerDialog
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
+import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.drivenext_antonova.R
@@ -13,6 +20,7 @@ import com.example.drivenext_antonova.RegisterRepository
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -28,6 +36,38 @@ class SignUpFragment3 : Fragment() {
     private lateinit var licenseLayout: TextInputLayout
     private lateinit var licenseDateLayout: TextInputLayout
     private lateinit var photoError: TextView
+    private lateinit var ivProfilePhoto: ImageView
+    private lateinit var btnUploadLicense: ImageView
+    private lateinit var btnUploadPassport: ImageView
+
+    // Константы для типов фото
+    companion object {
+        private const val REQUEST_CODE_PROFILE = 1001
+        private const val REQUEST_CODE_LICENSE = 1002
+        private const val REQUEST_CODE_PASSPORT = 1003
+    }
+
+    // Переменная для отслеживания текущего типа фото
+    private var currentPhotoType: Int = REQUEST_CODE_PROFILE
+
+    // Launcher для выбора изображений из галереи
+    private val galleryLauncher = registerForActivityResult(
+        ActivityResultContracts.GetContent()
+    ) { uri: Uri? ->
+        uri?.let { handleImageSelection(it) }
+    }
+
+    // Launcher для съемки фото камерой
+    private val cameraLauncher = registerForActivityResult(
+        ActivityResultContracts.TakePicture()
+    ) { success: Boolean ->
+        if (success) {
+            currentCameraUri?.let { handleImageSelection(it) }
+        }
+    }
+
+    // URI для временного файла камеры
+    private var currentCameraUri: Uri? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,32 +86,30 @@ class SignUpFragment3 : Fragment() {
         licenseLayout = view.findViewById(R.id.licenseLayout)
         licenseDateLayout = view.findViewById(R.id.licenseDateLayout)
         photoError = view.findViewById(R.id.photoError)
+        ivProfilePhoto = view.findViewById(R.id.ivProfilePhoto)
+        btnUploadLicense = view.findViewById(R.id.btnUploadLicense)
+        btnUploadPassport = view.findViewById(R.id.btnUploadPassport)
 
         val btnNext = view.findViewById<MaterialButton>(R.id.btnNext)
         val ivBack = view.findViewById<View>(R.id.ivBack)
-        val btnUploadLicense = view.findViewById<View>(R.id.btnUploadLicense)
-        val btnUploadPassport = view.findViewById<View>(R.id.btnUploadPassport)
-        val ivProfilePhoto = view.findViewById<View>(R.id.ivProfilePhoto)
 
         // Восстанавливаем данные
         restoreData()
 
-        // Обработчики кликов для загрузки фото (заглушки)
+        // Обработчики кликов для загрузки фото
         btnUploadLicense.setOnClickListener {
-            // Временная заглушка - отмечаем что фото загружено
-            RegisterRepository.saveLicensePhoto("license_photo_path")
-            showUploadSuccess("Фото водительского удостоверения загружено")
+            currentPhotoType = REQUEST_CODE_LICENSE
+            showImageSourceDialog()
         }
 
         btnUploadPassport.setOnClickListener {
-            // Временная заглушка - отмечаем что фото загружено
-            RegisterRepository.savePassportPhoto("passport_photo_path")
-            showUploadSuccess("Фото паспорта загружено")
+            currentPhotoType = REQUEST_CODE_PASSPORT
+            showImageSourceDialog()
         }
 
         ivProfilePhoto.setOnClickListener {
-            // Временная заглушка для аватара
-            showUploadSuccess("Фото профиля загружено")
+            currentPhotoType = REQUEST_CODE_PROFILE
+            showImageSourceDialog()
         }
 
         // Обработчик выбора даты
@@ -188,5 +226,74 @@ class SignUpFragment3 : Fragment() {
             message,
             android.widget.Toast.LENGTH_SHORT
         ).show()
+    }
+
+    // Методы для работы с выбором источника изображения
+    private fun showImageSourceDialog() {
+        val options = arrayOf("Камера", "Галерея")
+        
+        AlertDialog.Builder(requireContext())
+            .setTitle("Выберите источник")
+            .setItems(options) { _, which ->
+                when (which) {
+                    0 -> openCamera()
+                    1 -> openGallery()
+                }
+            }
+            .setNegativeButton("Отмена", null)
+            .show()
+    }
+
+    private fun openCamera() {
+        try {
+            val photoFile = createImageFile()
+            currentCameraUri = FileProvider.getUriForFile(
+                requireContext(),
+                "${requireContext().packageName}.fileprovider",
+                photoFile
+            )
+            cameraLauncher.launch(currentCameraUri)
+        } catch (e: Exception) {
+            android.widget.Toast.makeText(
+                requireContext(),
+                "Ошибка при создании файла для фото: ${e.message}",
+                android.widget.Toast.LENGTH_LONG
+            ).show()
+        }
+    }
+
+    private fun openGallery() {
+        galleryLauncher.launch("image/*")
+    }
+
+    private fun createImageFile(): File {
+        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+        val imageFileName = "JPEG_${timeStamp}_"
+        
+        // Создаем папку Pictures если её нет
+        val storageDir = File(requireContext().getExternalFilesDir(null), "Pictures")
+        if (!storageDir.exists()) {
+            storageDir.mkdirs()
+        }
+        
+        return File.createTempFile(imageFileName, ".jpg", storageDir)
+    }
+
+    private fun handleImageSelection(uri: Uri) {
+        when (currentPhotoType) {
+            REQUEST_CODE_PROFILE -> {
+                ivProfilePhoto.setImageURI(uri)
+                RegisterRepository.saveProfilePhoto(uri.toString())
+                showUploadSuccess("Фото профиля загружено")
+            }
+            REQUEST_CODE_LICENSE -> {
+                RegisterRepository.saveLicensePhoto(uri.toString())
+                showUploadSuccess("Фото водительского удостоверения загружено")
+            }
+            REQUEST_CODE_PASSPORT -> {
+                RegisterRepository.savePassportPhoto(uri.toString())
+                showUploadSuccess("Фото паспорта загружено")
+            }
+        }
     }
 }

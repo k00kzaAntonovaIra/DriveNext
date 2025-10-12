@@ -13,7 +13,7 @@ import com.example.drivenext_antonova.R
 
 class SplashFragment : Fragment() {
 
-    private val splashDelay: Long = 2000 // 2 секунды
+    private val splashDelay: Long = 3000 // 2 секунды
     private val handler = Handler(Looper.getMainLooper())
     private var navigationRunnable: Runnable? = null
 
