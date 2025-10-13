@@ -31,11 +31,11 @@ class HomepageFragment : Fragment() {
     }
 
     private fun performLogout() {
-        // Временная реализация - просто переходим на стартовый экран
+        // переход на стартовый экран
         try {
             findNavController().navigate(R.id.action_homepageFragment_to_gettingStartedFragment)
         } catch (e: Exception) {
-            // Если навигация не настроена, показываем сообщение
+
             Toast.makeText(
                 requireContext(),
                 "Выход выполнен",

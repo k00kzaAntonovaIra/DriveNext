@@ -16,7 +16,7 @@ import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.drivenext_antonova.R
-import com.example.drivenext_antonova.RegisterRepository
+import com.example.drivenext_antonova.data.RegisterRepository
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -40,7 +40,7 @@ class SignUpFragment3 : Fragment() {
     private lateinit var btnUploadLicense: ImageView
     private lateinit var btnUploadPassport: ImageView
 
-    // Константы для типов фото
+
     companion object {
         private const val REQUEST_CODE_PROFILE = 1001
         private const val REQUEST_CODE_LICENSE = 1002
@@ -80,7 +80,7 @@ class SignUpFragment3 : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Находим все элементы
+
         etLicense = view.findViewById(R.id.etLicense)
         etLicenseDate = view.findViewById(R.id.etLicenseDate)
         licenseLayout = view.findViewById(R.id.licenseLayout)
@@ -93,10 +93,8 @@ class SignUpFragment3 : Fragment() {
         val btnNext = view.findViewById<MaterialButton>(R.id.btnNext)
         val ivBack = view.findViewById<View>(R.id.ivBack)
 
-        // Восстанавливаем данные
         restoreData()
 
-        // Обработчики кликов для загрузки фото
         btnUploadLicense.setOnClickListener {
             currentPhotoType = REQUEST_CODE_LICENSE
             showImageSourceDialog()
@@ -112,17 +110,17 @@ class SignUpFragment3 : Fragment() {
             showImageSourceDialog()
         }
 
-        // Обработчик выбора даты
+
         etLicenseDate.setOnClickListener {
             showDatePicker()
         }
 
-        // Кнопка "Далее"
+
         btnNext.setOnClickListener {
             validateAndProceed()
         }
 
-        // Кнопка "Назад"
+
         ivBack.setOnClickListener {
             findNavController().navigate(R.id.action_signUpFragment3_to_signUpFragment2)
         }
@@ -164,10 +162,10 @@ class SignUpFragment3 : Fragment() {
         val errors = RegisterRepository.validateStep3()
 
         if (errors.isEmpty()) {
-            // Успешно - переходим дальше
+
             navigateToSuccess()
         } else {
-            // Показываем ошибки
+
             showErrors(errors)
         }
     }

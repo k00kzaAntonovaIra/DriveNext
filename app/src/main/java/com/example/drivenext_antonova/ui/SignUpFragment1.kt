@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.drivenext_antonova.R
-import com.example.drivenext_antonova.RegisterRepository
+import com.example.drivenext_antonova.data.RegisterRepository
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.checkbox.MaterialCheckBox
 import com.google.android.material.textfield.TextInputEditText
@@ -27,7 +27,6 @@ class SignUpFragment1 : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Находим все элементы
         val emailLayout = view.findViewById<TextInputLayout>(R.id.emailLayout)
         val passwordLayout = view.findViewById<TextInputLayout>(R.id.passwordLayout)
         val confirmPasswordLayout = view.findViewById<TextInputLayout>(R.id.confirmPasswordLayout)
@@ -38,13 +37,11 @@ class SignUpFragment1 : Fragment() {
         val btnNext = view.findViewById<MaterialButton>(R.id.btnNext)
         val chkError = view.findViewById<TextView>(R.id.chkError)
 
-        // Восстанавливаем данные
         etEmail.setText(RegisterRepository.currentData.email)
         etPassword.setText(RegisterRepository.currentData.password)
         etConfirmPassword.setText("")
         chkAgree.isChecked = false
 
-        // Обработчик кнопки "Далее"
         btnNext.setOnClickListener {
             validateAndProceed(
                 emailLayout,
@@ -58,7 +55,6 @@ class SignUpFragment1 : Fragment() {
             )
         }
 
-        // Обработчик кнопки "Назад"
         view.findViewById<View>(R.id.ivBack).setOnClickListener {
             findNavController().navigate(R.id.action_signUpFragment1_to_loginFragment)
         }
@@ -74,33 +70,31 @@ class SignUpFragment1 : Fragment() {
         chkAgree: MaterialCheckBox,
         chkError: TextView
     ) {
-        // Получаем значения
+
         val email = etEmail.text?.toString()?.trim() ?: ""
         val password = etPassword.text?.toString() ?: ""
         val confirmPassword = etConfirmPassword.text?.toString() ?: ""
         val isChecked = chkAgree.isChecked
 
-        // Сброс ошибок
+
         emailLayout.error = null
         passwordLayout.error = null
         confirmPasswordLayout.error = null
         chkError.visibility = View.INVISIBLE
 
-        // Сохраняем во временное хранилище
+
         RegisterRepository.saveEmail(email)
         RegisterRepository.savePassword(password)
 
-        // Валидация
+
         val errors = RegisterRepository.validateStep1(
             confirmPassword = confirmPassword,
             acceptedTerms = isChecked
         )
 
         if (errors.isEmpty()) {
-            // Все валидно - переходим к следующему шагу
             findNavController().navigate(R.id.action_signUpFragment1_to_signUpFragment2)
         } else {
-            // Показываем ошибки
             errors["email"]?.let { emailLayout.error = it }
             errors["password"]?.let { passwordLayout.error = it }
             errors["repeat"]?.let { confirmPasswordLayout.error = it }

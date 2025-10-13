@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.drivenext_antonova.R
-import com.example.drivenext_antonova.RegisterRepository
+import com.example.drivenext_antonova.data.RegisterRepository
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.radiobutton.MaterialRadioButton
 import com.google.android.material.textfield.TextInputEditText
@@ -34,7 +34,6 @@ class SignUpFragment2 : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Находим все элементы
         val lastNameLayout = view.findViewById<TextInputLayout>(R.id.lastNameLayout)
         val firstNameLayout = view.findViewById<TextInputLayout>(R.id.firstNameLayout)
         val middleNameLayout = view.findViewById<TextInputLayout>(R.id.middleNameLayout)
@@ -48,20 +47,16 @@ class SignUpFragment2 : Fragment() {
         val btnNext = view.findViewById<MaterialButton>(R.id.btnNext)
         val ivBack = view.findViewById<View>(R.id.ivBack)
 
-        // Восстанавливаем данные
         restoreData(etLastName, etFirstName, etMiddleName, etBirthDate, rgGender)
 
-        // Обработчик выбора даты
         etBirthDate.setOnClickListener {
             showDatePicker(etBirthDate)
         }
 
-        // Обработчик изменения пола
         rgGender.setOnCheckedChangeListener { _, _ ->
             genderError.visibility = View.GONE
         }
 
-        // Кнопка "Далее"
         btnNext.setOnClickListener {
             validateAndProceed(
                 etLastName, etFirstName, etMiddleName, etBirthDate,
@@ -70,7 +65,6 @@ class SignUpFragment2 : Fragment() {
             )
         }
 
-        // Кнопка "Назад"
         ivBack.setOnClickListener {
             findNavController().navigate(R.id.action_signUpFragment2_to_signUpFragment1)
         }
@@ -128,20 +122,20 @@ class SignUpFragment2 : Fragment() {
         rgGender: android.widget.RadioGroup,
         genderError: TextView
     ) {
-        // Сохраняем данные
+
         saveData(etLastName, etFirstName, etMiddleName, rgGender)
 
-        // Сбрасываем ошибки
+
         resetErrors(lastNameLayout, firstNameLayout, middleNameLayout, birthDateLayout, genderError)
 
-        // Валидация
+
         val errors = RegisterRepository.validateStep2()
 
         if (errors.isEmpty()) {
-            // Успешно - переходим дальше
+
             findNavController().navigate(R.id.action_signUpFragment2_to_signUpFragment3)
         } else {
-            // Показываем ошибки
+
             showErrors(errors, lastNameLayout, firstNameLayout, middleNameLayout, birthDateLayout, genderError)
         }
     }

@@ -7,7 +7,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import com.example.drivenext_antonova.ConnectivityLiveData
+import com.example.drivenext_antonova.util.ConnectivityLiveData
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        // Инициализируем наблюдение за сетью
+        //  наблюдение за сетью
         try {
             connectivityLiveData = ConnectivityLiveData(this)
             connectivityLiveData.observe(this) { connected ->
@@ -52,17 +52,17 @@ class MainActivity : AppCompatActivity() {
         val currentDestination = controller.currentDestination?.id
 
         if (!connected) {
-            // Показываем экран "Нет соединения" только если его еще нет
+            // "Нет соединения" только если его еще нет
             if (currentDestination != R.id.noConnectionFragment) {
                 try {
-                    // Используем безопасную навигацию
+                    // безопасную навигацию
                     controller.navigate(R.id.action_global_noConnectionFragment)
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
             }
         } else {
-            // Сеть появилась - закрываем экран "Нет соединения"
+            // Сеть появилась - закрываем экран
             if (currentDestination == R.id.noConnectionFragment) {
                 try {
                     controller.popBackStack()
@@ -73,10 +73,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // Добавляем наблюдение за жизненным циклом фрагментов
+    // наблюдение за жизненным циклом фрагментов
     override fun onResume() {
         super.onResume()
-        // При возвращении в активность проверяем состояние сети
+        // При возвращении в активность проверяет состояние сети
         connectivityLiveData.value?.let { connected ->
             handleNetworkChange(connected)
         }

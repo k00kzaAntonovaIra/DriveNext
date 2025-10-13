@@ -23,14 +23,13 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Используйте правильное имя вашего layout файла
+
         return inflater.inflate(R.layout.fragment_login, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Найдите элементы по ID из вашего layout
         emailEdit = view.findViewById(R.id.etEmail)
         passwordEdit = view.findViewById(R.id.etPassword)
         loginButton = view.findViewById(R.id.btnLogin)
@@ -58,12 +57,10 @@ class LoginFragment : Fragment() {
             Log.e("LoginFragment", "Register button not found!")
         }
 
-        // Обработка "Забыли пароль?"
         val forgotPassword = view.findViewById<TextView>(R.id.tvForgotPassword)
         if (forgotPassword != null) {
             forgotPassword.setOnClickListener {
                 Log.d("LoginFragment", "Forgot password clicked")
-                // Обработка восстановления пароля
             }
         } else {
             Log.e("LoginFragment", "Forgot password button not found!")
@@ -74,7 +71,6 @@ class LoginFragment : Fragment() {
         val email = emailEdit.text.toString().trim()
         val password = passwordEdit.text.toString()
 
-        // Простая валидация
         if (email.isEmpty()) {
             emailEdit.error = "Введите email"
             return
@@ -85,7 +81,6 @@ class LoginFragment : Fragment() {
             return
         }
 
-        // Ваша логика входа
         performLogin(email, password)
     }
 
@@ -93,7 +88,7 @@ class LoginFragment : Fragment() {
         try {
             // Временная заглушка - всегда успешный вход
             if (email.isNotEmpty() && password.isNotEmpty()) {
-                // Успешный вход - переходим на главный экран
+                // Успешный вход - переход на главный экран
                 findNavController().navigate(R.id.action_loginFragment_to_homepageFragment)
             }
         } catch (e: Exception) {

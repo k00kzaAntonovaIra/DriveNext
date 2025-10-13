@@ -28,7 +28,6 @@ class SplashFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Задержка и переход
         navigationRunnable = Runnable {
             navigateToNextScreen()
         }
@@ -36,7 +35,6 @@ class SplashFragment : Fragment() {
     }
 
     private fun navigateToNextScreen() {
-        // Проверяем, что фрагмент еще активен
         if (!isAdded || isDetached || isRemoving) {
             Log.w("SplashFragment", "Fragment is not in valid state for navigation")
             return
