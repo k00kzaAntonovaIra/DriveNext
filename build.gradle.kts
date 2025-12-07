@@ -1,7 +1,5 @@
-//dependencies {
-//    // Navigation Component
-//    implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
-//    implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
-//
-//    // Ваши текущие зависимости...
-//}
+plugins {
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.kotlin.android) apply false
+    alias(libs.plugins.kotlin.parcelize) apply false
+}

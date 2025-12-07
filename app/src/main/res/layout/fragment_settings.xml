@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.drivenext_antonova.ui.settings.SettingsFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:text="Настройки"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="16dp" />
+
+            <!-- Профиль -->
+            <LinearLayout
+                android:id="@+id/itemProfile"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="16dp"
+                android:background="?attr/selectableItemBackground"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/imgAvatar"
+                    android:src="@drawable/ic_person"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:contentDescription="User photo" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_marginStart="12dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/tvName"
+                        android:text="Иван Иванов"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/tvEmail"
+                        android:text="ivan@mtuci.ru"
+                        android:textColor="@color/medium_gray"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <ImageView
+                    android:src="@drawable/ic_arrow_forward"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:contentDescription="Next" />
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEEEEE" />
+
+            <!-- Остальные пункты без иконок слева -->
+            <LinearLayout
+                android:id="@+id/itemBookings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Мои бронирования"
+                    android:textColor="#222222"
+                    android:textSize="16sp" />
+                <ImageView android:src="@drawable/ic_arrow_forward" android:layout_width="24dp" android:layout_height="24dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/itemTheme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Тема"
+                    android:textColor="#222222"
+                    android:textSize="16sp" />
+                <ImageView android:src="@drawable/ic_arrow_forward" android:layout_width="24dp" android:layout_height="24dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/itemNotifications"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Уведомления"
+                    android:textColor="#222222"
+                    android:textSize="16sp" />
+                <ImageView android:src="@drawable/ic_arrow_forward" android:layout_width="24dp" android:layout_height="24dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/itemAddCar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Подключить свой автомобиль"
+                    android:textColor="#222222"
+                    android:textSize="16sp" />
+                <ImageView android:src="@drawable/ic_arrow_forward" android:layout_width="24dp" android:layout_height="24dp" />
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEEEEE" />
+
+            <LinearLayout
+                android:id="@+id/itemHelp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Помощь"
+                    android:textColor="#222222"
+                    android:textSize="16sp" />
+                <ImageView android:src="@drawable/ic_arrow_forward" android:layout_width="24dp" android:layout_height="24dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/itemInvite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Пригласи друга"
+                    android:textColor="#222222"
+                    android:textSize="16sp" />
+                <ImageView android:src="@drawable/ic_arrow_forward" android:layout_width="24dp" android:layout_height="24dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+    
+</LinearLayout>

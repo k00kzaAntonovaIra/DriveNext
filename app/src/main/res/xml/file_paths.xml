@@ -4,3 +4,4 @@
     <external-files-path name="my_camera" path="Camera/" />
     <cache-path name="my_cache" path="." />
 </paths>
+

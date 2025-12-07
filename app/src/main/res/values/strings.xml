@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">DriveNext_Antonova</string>
+    <string name="search_cars_hint">Введите марку автомобиля</string>
+    <string name="find_car_title">Давайте найдем автомобиль</string>
+    <string name="search_results_title">Результаты поиска</string>
+    <string name="add_photo">Добавить фото</string>
+    <string name="back">Назад</string>
+    <string name="search_result">Результаты поиска</string>
+    <string name="search_for_cars">Ищем автомобили…</string>
+    <string name="user">Пользователь</string>
+    <string name="joined_in">Присоединился в %1$s</string>
+    <string name="logged_out">Вы вышли из профиля</string>
+    <string name="gender_male">Мужской</string>
+    <string name="gender_female">Женский</string>
+    <string name="gender_unknown">Не указан</string>
+    <string name="home">Главная</string>
+    <string name="bookmarks">Закладки</string>
+    <string name="settings">Настройки</string>
 </resources>

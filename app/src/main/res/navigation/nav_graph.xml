@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.example.drivenext_antonova.ui.SplashFragment"
+        android:name="com.example.drivenext_antonova.ui.common.SplashFragment"
         android:label="Splash">
         <action
             android:id="@+id/action_splashFragment_to_onboardingFragment1"
@@ -22,7 +22,7 @@
 
     <fragment
         android:id="@+id/noConnectionFragment"
-        android:name="com.example.drivenext_antonova.ui.NoConnectionFragment"
+        android:name="com.example.drivenext_antonova.ui.common.NoConnectionFragment"
         android:label="No connection">
         <action
             android:id="@+id/action_global_noConnectionFragment"
@@ -65,7 +65,7 @@
 
     <fragment
         android:id="@+id/gettingStartedFragment"
-        android:name="com.example.drivenext_antonova.ui.GettingStartedFragment"
+        android:name="com.example.drivenext_antonova.ui.authorization.GettingStartedFragment"
         android:label="Getting started">
         <action
             android:id="@+id/action_gettingStartedFragment_to_loginFragment"
@@ -77,7 +77,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.drivenext_antonova.ui.LoginFragment"
+        android:name="com.example.drivenext_antonova.ui.authorization.LoginFragment"
         android:label="Log in">
         <action
             android:id="@+id/action_loginFragment_to_homepageFragment"
@@ -89,7 +89,7 @@
 
     <fragment
         android:id="@+id/signUpFragment1"
-        android:name="com.example.drivenext_antonova.ui.SignUpFragment1"
+        android:name="com.example.drivenext_antonova.ui.authorization.SignUpFragment1"
         android:label="Sign up 1">
         <action
             android:id="@+id/action_signUpFragment1_to_signUpFragment2"
@@ -101,7 +101,7 @@
 
     <fragment
         android:id="@+id/signUpFragment2"
-        android:name="com.example.drivenext_antonova.ui.SignUpFragment2"
+        android:name="com.example.drivenext_antonova.ui.authorization.SignUpFragment2"
         android:label="Sign up 2">
         <action
             android:id="@+id/action_signUpFragment2_to_signUpFragment3"
@@ -113,7 +113,7 @@
 
     <fragment
         android:id="@+id/signUpFragment3"
-        android:name="com.example.drivenext_antonova.ui.SignUpFragment3"
+        android:name="com.example.drivenext_antonova.ui.authorization.SignUpFragment3"
         android:label="Sign up 3">
         <action
             android:id="@+id/action_signUpFragment3_to_signUpSuccessFragment"
@@ -125,7 +125,7 @@
 
     <fragment
         android:id="@+id/signUpSuccessFragment"
-        android:name="com.example.drivenext_antonova.ui.SignUpSuccessFragment"
+        android:name="com.example.drivenext_antonova.ui.authorization.SignUpSuccessFragment"
         android:label="Sign up success">
         <action
             android:id="@+id/action_signUpSuccessFragment_to_homepageFragment"
@@ -137,10 +137,96 @@
 
     <fragment
         android:id="@+id/homepageFragment"
-        android:name="com.example.drivenext_antonova.ui.HomepageFragment"
+        android:name="com.example.drivenext_antonova.ui.search.HomepageFragment"
         android:label="Homepage">
         <action
-            android:id="@+id/action_homepageFragment_to_gettingStartedFragment"
-            app:destination="@id/gettingStartedFragment" />
+            android:id="@+id/action_homepageFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_homepageFragment_to_bookmarksFragment"
+            app:destination="@id/bookmarksFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/bookmarksFragment"
+        android:name="com.example.drivenext_antonova.ui.common.BookmarksFragment"
+        android:label="Bookmarks" />
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.drivenext_antonova.ui.settings.SettingsFragment"
+        android:label="Settings">
+        <action
+            android:id="@+id/action_settingsFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+
+        <action
+            android:id="@+id/action_settingsFragment_to_becomeHostFragment"
+            app:destination="@id/becomeHostFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.drivenext_antonova.ui.settings.ProfileFragment"
+        android:label="Profile">
+        <action
+            android:id="@+id/action_profileFragment_to_homepageFragment"
+            app:destination="@id/homepageFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_bookmarksFragment"
+            app:destination="@id/bookmarksFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/becomeHostFragment"
+        android:name="com.example.drivenext_antonova.ui.add_car.BecomeHostFragment"
+        android:label="BecomeHost">
+
+        <action
+            android:id="@+id/action_becomeHostFragment_to_addCarAddressFragment"
+            app:destination="@id/addCarAddressFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addCarAddressFragment"
+        android:name="com.example.drivenext_antonova.ui.add_car.AddCarAddressFragment"
+        android:label="CarAddress">
+
+        <action
+            android:id="@+id/action_addCarAddressFragment_to_addCarDescriptionFragment"
+            app:destination="@id/addCarDescriptionFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addCarDescriptionFragment"
+        android:name="com.example.drivenext_antonova.ui.add_car.AddCarDescriptionFragment"
+        android:label="CarDescription">
+
+        <action
+            android:id="@+id/action_addCarDescriptionFragment_to_addCarPhotosFragment"
+            app:destination="@id/addCarPhotosFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addCarPhotosFragment"
+        android:name="com.example.drivenext_antonova.ui.add_car.AddCarPhotosFragment"
+        android:label="CarPhotos">
+
+        <action
+            android:id="@+id/action_AddCarPhotosFragment_to_addSuccessFragment"
+            app:destination="@id/addSuccessFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addSuccessFragment"
+        android:name="com.example.drivenext_antonova.ui.add_car.AddSuccessFragment"
+        android:label="AddSuccess">
+
+        <action
+            android:id="@+id/action_AddSuccessFragment_to_homepageFragment"
+            app:destination="@id/homepageFragment" />
+    </fragment>
+
 </navigation>
+

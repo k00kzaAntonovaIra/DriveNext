@@ -1,0 +1,49 @@
+package com.example.drivenext_antonova.util
+
+import android.content.Context
+import android.content.SharedPreferences
+import androidx.core.content.edit
+
+class PrefsManager(context: Context) {
+
+    private val prefs: SharedPreferences =
+        context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+
+    // Константы класса
+    companion object {
+        private const val PREFS_NAME = "drive_next_prefs"
+        private const val KEY_FIRST_LAUNCH = "first_launch"
+        private const val KEY_ACCESS_TOKEN = "access_token"
+    }
+
+    // Проверка первого запуска
+    fun isFirstLaunch(): Boolean {
+        val firstLaunch = prefs.getBoolean(KEY_FIRST_LAUNCH, true)
+        if (firstLaunch) {
+            prefs.edit { putBoolean(KEY_FIRST_LAUNCH, false) }
+        }
+        return firstLaunch
+    }
+
+    // Сохраняем access token
+    fun saveAccessToken(token: String) {
+        prefs.edit { putString(KEY_ACCESS_TOKEN, token) }
+    }
+
+    // Получаем access token
+    fun getAccessToken(): String? {
+        return prefs.getString(KEY_ACCESS_TOKEN, null)
+    }
+
+    // Проверка валидности токена
+    fun isAccessTokenValid(): Boolean {
+        val token = getAccessToken()
+        // Нужно добавить реальную проверку
+        return !token.isNullOrEmpty()
+    }
+
+    // Удаляем токен
+    fun clearAccessToken() {
+        prefs.edit { remove(KEY_ACCESS_TOKEN) }
+    }
+}
